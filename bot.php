@@ -10,7 +10,7 @@ $addMessage = function($text) {
 	$dbconn = pg_connect("host=".$host." dbname=".$dbname." user=".$user." password=".$password)
 	    or die('Could not connect: ' . pg_last_error());
 	// Performing SQL query
-	$query = 'SELECT max(line_message_id) AS max_id FROM smstv.line_message';
+	$query = "SELECT max(line_message_id) AS max_id FROM smstv.line_message";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
 	int $maxId = 0;
@@ -18,7 +18,7 @@ $addMessage = function($text) {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
-	$query = 'INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', 'Sender'.'$maxId')';
+	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', 'Sender'.'$maxId')";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
 	pg_free_result($result);
@@ -42,6 +42,7 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'] ; 
+			
 			$addMessage($text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
