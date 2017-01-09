@@ -28,7 +28,7 @@ $addMessage = function() {
 	pg_close($dbconn);
 	
 	
-};
+}
 
 //////////////////////
 
