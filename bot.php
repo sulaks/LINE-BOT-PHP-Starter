@@ -1,7 +1,7 @@
 <?php
 
-$addMessage = function() {
-	return "ข้อความตอบกลับ";
+$addMessage = function($text) {
+	//return "ข้อความตอบกลับ";
 	// Connecting, selecting database
 	$host = "ec2-54-235-248-197.compute-1.amazonaws.com";
 	$dbname = "d1tttof3ndli1u";
@@ -10,19 +10,17 @@ $addMessage = function() {
 	$dbconn = pg_connect("host=".$host." dbname=".$dbname." user=".$user." password=".$password)
 	    or die('Could not connect: ' . pg_last_error());
 	// Performing SQL query
-	$query = 'SELECT * FROM smstv.line_message';
+	$query = 'SELECT max(line_message_id) AS max_id FROM smstv.line_message';
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
-	// Printing results in HTML
-	echo "<table>\n";
-	while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-	    echo "\t<tr>\n";
-	    foreach ($line as $col_value) {
-		echo "\t\t<td>$col_value</td>\n";
-	    }
-	    echo "\t</tr>\n";
+	
+	int $maxId = 0;
+	if ($row = pg_fetch_array($result)) {
+	    $maxId = $row['max_id'];
 	}
-	echo "</table>\n";
-	// Free resultset
+	$maxId = $maxId + 1;
+	$query = 'INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', 'Sender'.'$maxId')';
+	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+	
 	pg_free_result($result);
 	// Closing connection
 	pg_close($dbconn);    
@@ -43,7 +41,8 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['message']['text'] . $addMessage();
+			$text = $event['message']['text'] ; 
+			$addMessage($text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
