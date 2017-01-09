@@ -18,12 +18,14 @@ $addMessage = function($text) {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
-	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', 'Sender'.'$maxId')";
+	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', 'maxId')";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
 	pg_free_result($result);
 	// Closing connection
-	pg_close($dbconn);    
+	pg_close($dbconn);
+	
+	return $text;
 };
 
 //////////////////////
@@ -41,7 +43,7 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['message']['text'] ; 
+			$text = $event['message']['text']; 
 			
 			$addMessage($text);
 			// Get replyToken
