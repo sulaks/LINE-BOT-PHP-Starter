@@ -1,7 +1,7 @@
 <?php
 
 $addMessage = function() {
-	//return "ข้อความตอบกลับ";
+	return "ข้อความตอบกลับ";
 	// Connecting, selecting database
 	$host = "ec2-54-235-248-197.compute-1.amazonaws.com";
 	$dbname = "d1tttof3ndli1u";
@@ -18,7 +18,7 @@ $addMessage = function() {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
-	return $maxId;
+	//return $maxId;
 	
 	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('4', 'new text', 'Sender4')";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
