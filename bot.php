@@ -1,6 +1,6 @@
 <?php
 
-$addMessage = function($text) {
+$addMessage = function() {
 	//return "ข้อความตอบกลับ";
 	// Connecting, selecting database
 	$host = "ec2-54-235-248-197.compute-1.amazonaws.com";
@@ -25,7 +25,7 @@ $addMessage = function($text) {
 	// Closing connection
 	pg_close($dbconn);
 	
-	return $text;
+	return $maxId;
 };
 
 //////////////////////
@@ -43,9 +43,9 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['message']['text']; 
+			$text = $event['message']['text'].$addMessage($text); 
 			
-			$addMessage($text);
+			//$addMessage($text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
