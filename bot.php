@@ -18,6 +18,8 @@ $addMessage = function() {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
+	return $maxId;
+	
 	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('4', 'new text', 'Sender4')";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
@@ -25,7 +27,7 @@ $addMessage = function() {
 	// Closing connection
 	pg_close($dbconn);
 	
-	return $maxId;
+	
 };
 
 //////////////////////
