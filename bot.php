@@ -18,7 +18,7 @@ $addMessage = function($text) {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
-	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('$maxId', '$text', '$maxId')";
+	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ('4', 'new text', 'Sender4')";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
 	pg_free_result($result);
