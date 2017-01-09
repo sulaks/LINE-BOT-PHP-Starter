@@ -1,5 +1,5 @@
 <?php
-
+/*
 $addMessage = function() {
 	return "ข้อความตอบกลับ";
 	// Connecting, selecting database
@@ -29,7 +29,7 @@ $addMessage = function() {
 	
 	
 };
-
+*/
 //////////////////////
 
 $access_token = 'nLZ7DXTw9R1AYkIgkm7Ixu7E/Ftp32vHBIKGOw+VwaLjKQgSO5AIxGsLWJ2sWnbWXkhKh0ihNgJJkAvhwTze5swUMZFX8Mm3Tx+i21Btn6XAWICF7V1cjjg/fWzvQGWPNemz44dmY8VTJ9cm8PU2owdB04t89/1O/w1cDnyilFU=';
