@@ -1,6 +1,6 @@
 <?php
 
-$addMessage = function() {
+$addMessage = function($text) {
 	// Connecting, selecting database
 	$host = "ec2-54-235-248-197.compute-1.amazonaws.com";
 	$dbname = "d1tttof3ndli1u";
@@ -17,6 +17,9 @@ $addMessage = function() {
 	    $maxId = $row['max_id'];
 	}
 	$maxId = $maxId + 1;
+	
+	$query = "INSERT INTO smstv.line_message (line_message_id, message, sender) VALUES ($maxId, '$text', 'Sender $maxId')";
+	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
 	pg_free_result($result);
 	// Closing connection
@@ -69,9 +72,9 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['message']['text'] . $addMessage(); 
+			$text = $event['message']['text']; // . $addMessage(); 
 			
-			//$addMessage($text);
+			$addMessage($text);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
