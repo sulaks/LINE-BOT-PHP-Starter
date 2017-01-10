@@ -12,11 +12,17 @@ $addMessage = function() {
 	$query = "SELECT max(line_message_id) AS max_id FROM smstv.line_message";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
+	$maxId = 0;
+	if ($row = pg_fetch_array($result)) {
+	    $maxId = $row['max_id'];
+	}
+	$maxId = $maxId + 1;
+	
 	pg_free_result($result);
 	// Closing connection
 	pg_close($dbconn);
 	
-	return "ข้อความตอบกลับ";
+	return "ข้อความตอบกลับ".$maxId;
 };
 /*
 $addMessage = function() {
@@ -32,7 +38,7 @@ $addMessage = function() {
 	$query = "SELECT max(line_message_id) AS max_id FROM smstv.line_message";
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 	
-	int $maxId = 0;
+	$maxId = 0;
 	if ($row = pg_fetch_array($result)) {
 	    $maxId = $row['max_id'];
 	}
