@@ -22,7 +22,7 @@ $addMessage = function() {
 	// Closing connection
 	pg_close($dbconn);
 	
-	return "ข้อความตอบกลับ".$maxId;
+	return "ข้อความตอบกลับ"."$maxId";
 };
 /*
 $addMessage = function() {
