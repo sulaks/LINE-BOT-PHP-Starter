@@ -1,6 +1,21 @@
 <?php
 
 $addMessage = function() {
+	// Connecting, selecting database
+	$host = "ec2-54-235-248-197.compute-1.amazonaws.com";
+	$dbname = "d1tttof3ndli1u";
+	$user = "pxdvqzkqrblqjo";
+	$password = "ca489debf088e6027e2d3aa2f513337ba7f5d6ef68e686d9fa52652cdeac883f";
+	$dbconn = pg_connect("host=".$host." dbname=".$dbname." user=".$user." password=".$password)
+	    or die('Could not connect: ' . pg_last_error());
+	// Performing SQL query
+	$query = "SELECT max(line_message_id) AS max_id FROM smstv.line_message";
+	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+	
+	pg_free_result($result);
+	// Closing connection
+	pg_close($dbconn);
+	
 	return "ข้อความตอบกลับ";
 };
 /*
