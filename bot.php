@@ -46,7 +46,9 @@ if (!is_null($events['events'])) {
 			//$text = $event['message']['text']; 
 			
 			//$addMessage($text);
-			$text = "text = " . var_export($event, true);
+			//$text = "text = " . var_export($event, true);
+			$text = "text = " . $event['message']['text'] . "userId" . $event['userId'];
+			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
