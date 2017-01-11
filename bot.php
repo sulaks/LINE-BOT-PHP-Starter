@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
 			//$text = $event['message']['text']; 
 			
 			//$addMessage($text);
-			$text = "$events";
+			$text = var_dump($events);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
