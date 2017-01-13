@@ -45,31 +45,22 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			//$text = $event['message']['text']; 
 			
-			//$addMessage($text);
 			//$text = "text = " . var_export($event, true);
-			$text = "text = " . $event['message']['text'] . " - userId = " . $event['source']['userId'];
-			
-			// Get replyToken
-			$replyToken = $event['replyToken'];
-
-			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $text
-			];
+			$text = "text = " . $event['message']['text'] . ", userId = " . $event['source']['userId'];
 			
 			// Get profile
-			/*
-			$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
-			$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
-			$response = $bot->getProfile('<userId>');
+			
+			$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+			$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => 'a711c9a806b76224695eaac12b3d9c69']);
+			$response = $bot->getProfile('Uee518041b8409b808d28e07ae8cf8b39');
 			if ($response->isSucceeded()) {
 			    $profile = $response->getJSONDecodedBody();
-			    echo $profile['displayName'];
-			    echo $profile['pictureUrl'];
-			    echo $profile['statusMessage'];
+			    //echo $profile['displayName'];
+			    //echo $profile['pictureUrl'];
+			    //echo $profile['statusMessage'];
+				$text = ", displayName = " . $profile['displayName'];
 			}
-			*/
+			
 			/*
 			{
 			    "displayName":"LINE taro",
@@ -79,6 +70,15 @@ if (!is_null($events['events'])) {
 			}
 			*/
 			////////////////
+			
+			// Get replyToken
+			$replyToken = $event['replyToken'];
+
+			// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
