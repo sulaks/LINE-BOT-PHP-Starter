@@ -70,6 +70,14 @@ if (!is_null($events['events'])) {
 			    echo $profile['statusMessage'];
 			}
 			*/
+			/*
+			{
+			    "displayName":"LINE taro",
+			    "userId":"Uxxxxxxxxxxxxxx...",
+			    "pictureUrl":"http://obs.line-apps.com/...",
+			    "statusMessage":"Hello, LINE!"
+			}
+			*/
 			////////////////
 
 			// Make a POST Request to Messaging API to reply to sender
