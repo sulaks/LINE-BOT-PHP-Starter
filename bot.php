@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
 			    //echo $profile['displayName'];
 			    //echo $profile['pictureUrl'];
 			    //echo $profile['statusMessage'];
-				$text = ", displayName = " . $profile['displayName'];
+				$text = $text . ", displayName = " . $profile['displayName'];
 			}
 			
 			/*
