@@ -49,7 +49,7 @@ if (!is_null($events['events'])) {
 			$text = "text = " . $event['message']['text'] . ", userId = " . $event['source']['userId'];
 			
 			// Get profile
-			
+			/*
 			$httpClient = new LINE/LINEBot/HTTPClient/CurlHTTPClient($access_token);
 			$bot = new LINE/LINEBot($httpClient, ['channelSecret' => 'a711c9a806b76224695eaac12b3d9c69']);
 			$response = $bot->getProfile('Uee518041b8409b808d28e07ae8cf8b39');
@@ -60,7 +60,7 @@ if (!is_null($events['events'])) {
 			    //echo $profile['statusMessage'];
 				$text = $text . ", displayName = " . $profile['displayName'];
 			}
-			
+			*/
 			/*
 			{
 			    "displayName":"LINE taro",
