@@ -60,7 +60,7 @@ if (!is_null($events['events'])) {
 			    //echo $profile['statusMessage'];
 				$text = $text . ", displayName = " . $profile['displayName'];
 			}
-			$text = $text . " ->|";
+			$text = $text . " # the end.";
 			/*
 			{
 			    "displayName":"LINE taro",
