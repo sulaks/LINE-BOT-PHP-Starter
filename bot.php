@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
 			//$text = $event['message']['text']; 
 			
 			//$text = "text = " . var_export($event, true);
-			$text = "text = " . $event['message']['text'] . ", userId = " . $event['source']['userId'];
+			$text = "text1 = " . $event['message']['text'] . ", userId = " . $event['source']['userId'];
 			
 			// Get profile
 			
@@ -60,7 +60,7 @@ if (!is_null($events['events'])) {
 			    //echo $profile['statusMessage'];
 				$text = $text . ", displayName = " . $profile['displayName'];
 			}
-			$text = $text . " # the end.";
+			$text = $text . " text2.";
 			/*
 			{
 			    "displayName":"LINE taro",
